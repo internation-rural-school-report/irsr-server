@@ -19,7 +19,7 @@ router
     school.code = code;
     try {
       const id = await db.insert(school);
-      res.status(200).json({ id });
+      res.status(200).json({ id: id[0], code });
     } catch (err) {
       res.status(500).send('Failed to create new school');
     }

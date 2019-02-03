@@ -1,7 +1,7 @@
 const db = require('../config/dbConfig');
 
 module.exports = {
-  get: function (id, code=false) {
+  get: function (id, code = false) {
     let query = db('school')
       .select(
         'school.id',
@@ -13,7 +13,7 @@ module.exports = {
       .join('country', 'school.country_id', 'country.id')
 
     if (id) {
-      query.where('id', id).first();
+      query.where('school.id', id).first();
     }
 
     if (code) {

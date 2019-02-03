@@ -10,6 +10,6 @@ server.get('/', (req, res) => {
   res.status(200).send('Welcome to International Rural School Report');
 });
 
-server.use('/schools', publicRoute);
+server.use('/api', publicRoute);
 
 module.exports = server;

@@ -1,4 +1,8 @@
-// TODO: hash password!!!
+const bcrypt = require("bcryptjs");
+
+const dummyPass = 'password';
+const hashedPass = bcrypt.hashSync(dummyPass, 12);
+
 exports.seed = function(knex, Promise) {
   return knex('admin')
     .truncate()
@@ -7,37 +11,37 @@ exports.seed = function(knex, Promise) {
         {
           username: 'mmbah',
           email: 'mmbah@gmail.com',
-          password: 'pass',
+          password: hashedPass,
           school_id: 1
         },
         {
           username: 'jnykita',
           email: 'jnykita@gmail.com',
-          password: 'pass',
+          password: hashedPass,
           school_id: 1
         },
         {
           username: 'ttsana',
           email: 'ttsana@gmail.com',
-          password: 'pass',
+          password: hashedPass,
           school_id: 2
         },
         {
           username: 'butan',
           email: 'butan@gmail.com',
-          password: 'pass',
+          password: hashedPass,
           school_id: 3
         },
         {
           username: 'siaman',
           email: 'siaman@gmail.com',
-          password: 'pass',
+          password: hashedPass,
           school_id: 3
         },
         {
           username: 'mkey',
           email: 'mkey@gmail.com',
-          password: 'pass',
+          password: hashedPass,
           school_id: 4
         }
       ]);
