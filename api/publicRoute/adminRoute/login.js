@@ -11,7 +11,7 @@ router.post("/", validateUser, async (req, res) => {
   const { user } = req.body;
 
   try {
-    const matchUser = await db.getUserByName(user.username, 'admin');
+    const matchUser = await db.getUserByName(user.username);
 
     if (
       matchUser &&

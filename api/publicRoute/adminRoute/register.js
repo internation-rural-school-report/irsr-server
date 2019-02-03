@@ -13,7 +13,7 @@ router.post("/", validateAdmin, async (req, res) => {
   admin.password = bcrypt.hashSync(admin.password, 12);
 
   try {
-    const adminId = await db.register(admin, 'admin');
+    const adminId = await db.register(admin);
     const token = generateToken({ id: adminId[0] }, 'ADMIN');
     if (adminId.length) {
       res.status(201).json({ id: adminId[0], token });
