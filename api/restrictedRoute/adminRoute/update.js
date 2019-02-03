@@ -25,7 +25,7 @@ router.put("/", validate, async (req, res) => {
       res.status(400).send('Invalid username or password');
     }
   } catch (err) {
-    res.status(500).send('Failed to login into account');
+    res.status(500).send('Failed to update account');
   }
 });
 

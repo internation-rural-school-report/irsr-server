@@ -13,6 +13,6 @@ server.get('/', (req, res) => {
 });
 
 server.use('/api', publicRoute);
-server.use('/user', authenticate, restrictedRoute);
+server.use('/api', authenticate, restrictedRoute);
 
 module.exports = server;
