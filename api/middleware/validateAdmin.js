@@ -6,6 +6,8 @@ module.exports = async (req, res, next) => {
   if (
     !admin ||
     !admin.username ||
+    !admin.firstname ||
+    !admin.lastname ||
     !admin.email ||
     !admin.password ||
     !admin.school_id ||
@@ -14,6 +16,8 @@ module.exports = async (req, res, next) => {
     res.status(400).send('Missing required info');
   } else if (
     typeof admin.username !== 'string' ||
+    typeof admin.firstname !== 'string' ||
+    typeof admin.lastname !== 'string' ||
     typeof admin.email !== 'string' ||
     typeof admin.password !== 'string' ||
     typeof admin.school_id !== 'number' ||
