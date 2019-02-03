@@ -33,7 +33,6 @@ router
       const admins = await userDb.getAdminsBySchool(id);
       const boards = await userDb.getBoardsBySchool(id);
 
-      console.log(admins);
       res.status(200).json({...school, admins, boards});
     } catch (err) {
       res.status(500).send('Failed to fetch school info');

@@ -9,8 +9,8 @@ const options = {
 
 const generateToken = (objId, type) => jwt.sign(objId, secret[type], options);
 
-const verifyToken = token =>
-  jwt.verify(token, secret, (err, decoded) => {
+const verifyToken = (token, type='ADMIN') =>
+  jwt.verify(token, secret[type], (err, decoded) => {
     return !err;
   });
 

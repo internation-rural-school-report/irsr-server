@@ -4,6 +4,12 @@ module.exports = {
   register: function(user, role='admin') {
     return db(role).insert(user);
   },
+  update: function(id, user, role='admin') {
+    return db(role).where('id', id).update(user);
+  },
+  getUserById: function (id, role='admin') {
+    return db(role).where('id', id).first();
+  },
   getUserByName: function (username, role='admin') {
     return db(role).where('username', username).first();
   },
