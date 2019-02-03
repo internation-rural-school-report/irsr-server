@@ -17,7 +17,7 @@ router.post("/", validateUser, async (req, res) => {
       matchUser &&
       bcrypt.compareSync(user.password, matchUser.password)
     ) {
-      const token = generateToken({ id: matchUser.id });
+      const token = generateToken({ id: matchUser.id }, 'BOARD');
       res.status(200).json({ token });
     } else {
       res.status(400).send('Invalid username or password');

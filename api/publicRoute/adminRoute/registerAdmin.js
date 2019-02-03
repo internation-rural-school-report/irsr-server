@@ -14,7 +14,7 @@ router.post("/", validateAdmin, async (req, res) => {
 
   try {
     const adminId = await db.register(admin);
-    const token = generateToken({ id: adminId[0] });
+    const token = generateToken({ id: adminId[0] }, 'ADMIN');
     if (adminId.length) {
       res.status(201).json({ id: adminId[0], token });
     } else {

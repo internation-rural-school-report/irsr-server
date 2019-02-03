@@ -14,7 +14,7 @@ router.post("/", validateBoard, async (req, res) => {
 
   try {
     const boardId = await db.register(board);
-    const token = generateToken({ id: boardId[0] });
+    const token = generateToken({ id: boardId[0] }, 'BOARD');
     if (boardId.length) {
       res.status(201).json({ id: boardId[0], token });
     } else {
