@@ -1,6 +1,6 @@
 const schoolDb = require('../../data/helpers/schoolDb');
 
-module.exports = async (req, res, next) => {
+module.exports = (req, res, next) => {
   const { board } = req.body;
 
   if (

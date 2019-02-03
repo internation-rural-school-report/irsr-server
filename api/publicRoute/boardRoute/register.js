@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 
 const validateBoard = require('../../middleware/validateBoard');
 const { generateToken } = require('../../token/token');
-const db = require('../../../data/helpers/boardDb');
+const db = require('../../../data/helpers/userDb');
 
 const router = express.Router();
 
@@ -13,7 +13,7 @@ router.post("/", validateBoard, async (req, res) => {
   board.password = bcrypt.hashSync(board.password, 12);
 
   try {
-    const boardId = await db.register(board);
+    const boardId = await db.register(board, 'board');
     const token = generateToken({ id: boardId[0] }, 'BOARD');
     if (boardId.length) {
       res.status(201).json({ id: boardId[0], token });

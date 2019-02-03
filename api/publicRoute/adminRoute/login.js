@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 
 const validateUser = require('../../middleware/validateUser');
 const { generateToken } = require('../../token/token');
-const db = require('../../../data/helpers/adminDb');
+const db = require('../../../data/helpers/userDb');
 
 const router = express.Router();
 
@@ -11,7 +11,7 @@ router.post("/", validateUser, async (req, res) => {
   const { user } = req.body;
 
   try {
-    const matchUser = await db.getAdminByName(user.username);
+    const matchUser = await db.getUserByName(user.username, 'admin');
 
     if (
       matchUser &&

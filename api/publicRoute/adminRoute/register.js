@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 
 const validateAdmin = require('../../middleware/validateAdmin');
 const { generateToken } = require('../../token/token');
-const db = require('../../../data/helpers/adminDb');
+const db = require('../../../data/helpers/userDb');
 
 const router = express.Router();
 
@@ -13,7 +13,7 @@ router.post("/", validateAdmin, async (req, res) => {
   admin.password = bcrypt.hashSync(admin.password, 12);
 
   try {
-    const adminId = await db.register(admin);
+    const adminId = await db.register(admin, 'admin');
     const token = generateToken({ id: adminId[0] }, 'ADMIN');
     if (adminId.length) {
       res.status(201).json({ id: adminId[0], token });
