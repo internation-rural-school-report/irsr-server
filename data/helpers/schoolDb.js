@@ -20,7 +20,7 @@ module.exports = {
       query.select('school.code');
     }
 
-
     return query;
-  }
+  },
+  insert: school => db('school').insert(school),
 }
