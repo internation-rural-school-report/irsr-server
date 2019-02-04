@@ -23,4 +23,5 @@ module.exports = {
     return query;
   },
   insert: school => db('school').insert(school),
+  update: (school, id) => db('school').where('id', id).update(school)
 }
