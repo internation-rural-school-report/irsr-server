@@ -29,5 +29,15 @@ router
       res.status(500).send('Failed to create issue');
     }
   })
+  .delete("/:id", async (req, res) => {
+    const { id } = req.params;
+
+    try {
+      const issueId = await issueDb.delete(1);
+      res.sendStatus(204);
+    } catch (err) {
+      res.status(500).send('Failed to create issue');
+    }
+  })
 
 module.exports = router;

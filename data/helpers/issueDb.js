@@ -25,5 +25,8 @@ module.exports = {
   },
   getIssueType: () => {
     return db('issue_type');
+  },
+  delete: (id) => {
+    return db('issue').where('id', id).del();
   }
 }

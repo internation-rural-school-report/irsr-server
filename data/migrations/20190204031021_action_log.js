@@ -25,7 +25,8 @@ exports.up = function(knex, Promise) {
 
     t.foreign('issue_id')
       .references('id')
-      .inTable('issue');
+      .inTable('issue')
+      .onDelete('CASCADE');
 
     t.foreign('status_id')
       .references('id')
