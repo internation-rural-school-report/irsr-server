@@ -28,5 +28,8 @@ module.exports = {
   },
   delete: (id) => {
     return db('issue').where('id', id).del();
+  },
+  update: (id, issue) => {
+    return db('issue').where('id', id).update(issue);
   }
 }

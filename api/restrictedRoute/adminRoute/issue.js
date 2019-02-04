@@ -2,6 +2,7 @@ const express = require("express");
 
 const issueDb = require('../../../data/helpers/issueDb');
 const validateInput = require('../../middleware/validateIssue');
+const validateUpdate = require('../../middleware/validateIssueUpdate');
 
 const router = express.Router();
 
@@ -45,6 +46,22 @@ router
       res.status(500).send('Failed to create issue');
     }
   })
+  .put("/:id", validateUpdate, async (req, res) => {
+    const { id } = req.params;
+    const { cost, description, type_id, photo_url } = req.body.issue;
+
+    try {
+      await issueDb.update(id, {
+        description,
+        cost,
+        type_id,
+        photo_url
+      });
+      res.sendStatus(204);
+    } catch (err) {
+      res.status(500).send('Failed to update issue');
+    }
+  })
   .delete("/:id", async (req, res) => {
     const { id } = req.params;
 
@@ -52,7 +69,7 @@ router
       await issueDb.delete(id);
       res.sendStatus(204);
     } catch (err) {
-      res.status(500).send('Failed to create issue');
+      res.status(500).send('Failed to delete issue');
     }
   })
 
