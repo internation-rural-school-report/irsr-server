@@ -6,6 +6,22 @@ const validateInput = require('../../middleware/validateIssue');
 const router = express.Router();
 
 router
+  .param('id', async (req, res, next, id) => {
+    const { admin } = req;
+
+    try {
+      const issues = await issueDb.getBySchool(admin.school_id);
+      const issue = issues.find(issue => issue.id === Number(id));
+      console.log(issues);
+      if (!issue) {
+        res.status(400).send('Cannot fetch issue');
+      } else {
+        next();
+      }
+    } catch (err) {
+      res.status(500).send('Cannot connect to Database')
+    }
+  })
   .get("/", async (req, res) => {
     const { admin } = req;
 
@@ -33,7 +49,7 @@ router
     const { id } = req.params;
 
     try {
-      const issueId = await issueDb.delete(1);
+      await issueDb.delete(id);
       res.sendStatus(204);
     } catch (err) {
       res.status(500).send('Failed to create issue');
