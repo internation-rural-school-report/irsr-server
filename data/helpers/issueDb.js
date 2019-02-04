@@ -31,5 +31,29 @@ module.exports = {
   },
   update: (id, issue) => {
     return db('issue').where('id', id).update(issue);
+  },
+  getByBoard: (id) => {
+    let query = db('board')
+      .select(
+        'issue.id',
+        'issue.created_at',
+        'issue.photo_url',
+        'issue.description',
+        'issue.cost',
+        'admin.id as admin_id',
+        'admin.firstname',
+        'admin.lastname',
+        'issue_type.name as type',
+        'issue_status.name as status'
+      )
+      .join('school_board', 'board.id', 'school_board.board_id')
+      .join('school', 'school_board.school_id', 'school.id')
+      .join('admin', 'admin.school_id', 'school.id')
+      .join('issue', 'admin.id', 'issue.admin_id')
+      .join('issue_type', 'issue.type_id', 'issue_type.id')
+      .join('issue_status', 'issue.status_id', 'issue_status.id')
+      .where('board.id', id);
+
+    return query;
   }
 }
