@@ -22,7 +22,7 @@ module.exports = {
 
     return query;
   },
-  getByBoard: id => {
+  getByBoard: (id, code = false) => {
     let query = db('school')
     .select(
       'school.id',
@@ -35,8 +35,13 @@ module.exports = {
       .join('school_board', 'school_board.school_id', 'school.id')
       .where('school_board.board_id', id)
 
+      if (code) {
+        query.select('school.code');
+      }
+
     return query;
   },
   insert: school => db('school').insert(school),
-  update: (school, id) => db('school').where('id', id).update(school)
+  update: (school, id) => db('school').where('id', id).update(school),
+  addBoard: (board_id, school_id) => db('school_board').insert({board_id, school_id})
 }
