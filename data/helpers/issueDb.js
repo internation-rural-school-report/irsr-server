@@ -53,7 +53,16 @@ module.exports = {
       .join('issue_type', 'issue.type_id', 'issue_type.id')
       .join('issue_status', 'issue.status_id', 'issue_status.id')
       .where('board.id', id);
-
     return query;
+  },
+  createAction: function (action) {
+    return db('action_log')
+      .insert(action)
+  },
+  get: function (id) {
+    return db('issue').where('id', id).first();
+  },
+  getStatuses: function () {
+    return db('issue_status');
   }
 }
