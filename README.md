@@ -8,7 +8,8 @@
 
 ### Schools
 
-#### **GET /api/schools**: fetches all schools' public information
+#### **GET /api/schools**
+Fetches all schools' public information
 
 Responses:
 - 200 (OK)
@@ -30,7 +31,8 @@ Responses:
 ```
 - 500 (Internal Server Error)
 
-#### **GET /api/schools/:id**: fetches a school information
+#### **GET /api/schools/:id**
+Fetches a school public information including it's admins and board members
 
 Responses: 
 - 200 (OK)
