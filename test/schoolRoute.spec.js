@@ -1,10 +1,10 @@
 const request = require("supertest");
 
-const server = require("../../server");
-const db = require("../../../data/config/dbConfig");
-const { schools } = require("../../../data/seeds-test/school");
-const { school_levels } = require("../../../data/seeds-test/school_level");
-const { countries } = require("../../../data/seeds-test/country");
+const server = require("../api/server");
+const db = require("../data/config/dbConfig");
+const { schools } = require("../data/seeds-test/school");
+const { school_levels } = require("../data/seeds-test/school_level");
+const { countries } = require("../data/seeds-test/country");
 
 const school = {
   name: "The New Hope",
